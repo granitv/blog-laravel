@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ArticleController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +18,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/articles', [ ArticleController::class, 'index' ]);
+Route::post('/articles', [ ArticleController::class, 'store' ]);
+Route::get('/articles/{id}', [ ArticleController::class, 'show' ]);
+Route::post('/articles/{id}', [ ArticleController::class, 'update' ]);
+Route::delete('/articles/{id}', [ ArticleController::class, 'destroy' ]);
+
+
+Route::post('/categories', [ CategoryController::class, 'store' ]);
+Route::post('/categories/{id}', [ CategoryController::class, 'update' ]);
